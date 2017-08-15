@@ -4,7 +4,7 @@ if (! defined('NV_IS_MOD_TKB')) {
     die('Stop!!!');
 }
 
-function view_site_main($day_apply, $ds_lop, $lop_ht = '', $tkb = NULL) {
+function view_site_main($day_apply, $ds_lop, $lop_ht = '', $tkb = NULL, $num_time0 = 0, $num_time1 = 0) {
     
     global $module_file, $lang_module, $lang_global, $module_info;
  
@@ -25,10 +25,25 @@ function view_site_main($day_apply, $ds_lop, $lop_ht = '', $tkb = NULL) {
        	if ($lop_ht) {
        		$xtpl->parse('main.block_table.loop_ds.selected_lop');
        		$xtpl->assign('LOP_HT', $lop_ht);
-       		foreach ($tkb as $value) {
-       			$xtpl->assign('TKB', $value);
-       			$xtpl->parse('main.block_tablekq.block_show.loop_kq');
-       		}
+       		
+          if ($num_time0 > 0) {
+            foreach ($tkb as $value) {
+              if($value['buoi'] == 0) {
+                $xtpl->assign('TKB', $value);
+                $xtpl->parse('main.block_tablekq.block_show_sang.loop_kq');
+              }
+            }
+            $xtpl->parse('main.block_tablekq.block_show_sang');
+          }
+          if ($num_time1 > 0) {
+            foreach ($tkb as $value) {
+              if($value['buoi'] == 1) {
+                $xtpl->assign('TKB', $value);
+                $xtpl->parse('main.block_tablekq.block_show_chieu.loop_kq');
+              }
+            }
+            $xtpl->parse('main.block_tablekq.block_show_chieu');
+          }
        		$xtpl->parse('main.block_tablekq.block_show');
        		$xtpl->parse('main.block_tablekq');
        	}
@@ -75,7 +90,6 @@ function view_giaovien($day_apply, $ds_gv, $gv_ht = '', $tkb = NULL) {
               $xtpl->assign('TKB', $value);
               $xtpl->parse('main.block_tablekq.block_show_chieu.loop_kq');
             }
-            
           }
           $xtpl->parse('main.block_tablekq.block_show_chieu');
 

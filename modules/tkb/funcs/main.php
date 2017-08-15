@@ -18,16 +18,23 @@ if ($nv_Request->get_title('keywords', 'post')) {
 	$lop_ht = $nv_Request->get_title('keywords', 'post');
 	$lop_ht = stripslashes(trim($lop_ht));
 
-	$result = $db->query("SELECT tiet, thu2, thu3, thu4, thu5, thu6, thu7 FROM " . NV_PREFIXLANG . "_" . $module_data . "_lop WHERE (lop LIKE '".$lop_ht."') ORDER BY tiet ASC");
+	$result = $db->query("SELECT tiet, buoi, thu2, thu3, thu4, thu5, thu6, thu7 FROM " . NV_PREFIXLANG . "_" . $module_data . "_lop WHERE (lop LIKE '".$lop_ht."') ORDER BY tiet ASC");
 	$tkb = [];
 	$i = 0;
-	
+	$num_time0 = 0;
+	$num_time1 = 0;
 	while ($rows = $result->fetch()){
-		$tkb[$i] = [ $rows['tiet'], $rows['thu2'], $rows['thu3'], $rows['thu4'], $rows['thu5'], $rows['thu6'], $rows['thu7'] ];    
+		$tkb[$i] = [ $rows['tiet'], $rows['thu2'], $rows['thu3'], $rows['thu4'], $rows['thu5'], $rows['thu6'], $rows['thu7'], 'buoi' => $rows['buoi'] ];
+		if ($rows['buoi'] == 0) {
+		   	$num_time0++;
+	   	}
+	   	if ($rows['buoi'] == 1) {
+		   	$num_time1++;
+	   	} 
 		$i++;
 	} 
 
-	$contents = view_site_main($day_apply, $ds_lop, $lop_ht, $tkb);
+	$contents = view_site_main($day_apply, $ds_lop, $lop_ht, $tkb, $num_time0, $num_time1);
 } else {
 	$contents = view_site_main($day_apply, $ds_lop);
 }

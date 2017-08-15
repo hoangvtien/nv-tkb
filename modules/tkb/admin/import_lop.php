@@ -12,6 +12,9 @@ $success = '';
 
 // Khi nhấp Import
 if ($nv_Request->isset_request('do', 'post')) {
+
+	$buoi = $nv_Request->get_int('buoi', 'post', 0);
+
 	if (isset($_FILES['ufile']) && is_uploaded_file($_FILES['ufile']['tmp_name'])) {
 		$filename = nv_string_to_filename($_FILES['ufile']['name']);
         $file = NV_ROOTDIR . '/' . NV_TEMP_DIR . '/' . $filename;
@@ -71,13 +74,14 @@ if ($nv_Request->isset_request('do', 'post')) {
 						$db->query("DELETE FROM " . NV_PREFIXLANG . "_" . $module_data . "_lop WHERE lop = '".$_lop."'");
 						foreach ($val1 as $_tiet => $_mon) {
 							$_sql = 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . '_lop
-								(lop, tiet, thu2, thu3, thu4, thu5, thu6, thu7) VALUES
-								(:lop, :tiet, :thu2, :thu3, :thu4, :thu5, :thu6, :thu7)';
+								(lop, buoi, tiet, thu2, thu3, thu4, thu5, thu6, thu7) VALUES
+								(:lop, :buoi, :tiet, :thu2, :thu3, :thu4, :thu5, :thu6, :thu7)';
 							
 							$sth = $db->prepare($_sql);
 		            		$sth->bindParam(':lop', $_lop, PDO::PARAM_STR);
 		            		$sth->bindParam(':tiet', $_tiet, PDO::PARAM_INT);
-
+		            		$sth->bindParam(':buoi', $buoi, PDO::PARAM_INT);
+		            		
 							foreach ($_mon as $_thu => $_nocare) {
 								$sth->bindParam(':thu'.$_thu, $_mon[$_thu], PDO::PARAM_STR);
 							}
