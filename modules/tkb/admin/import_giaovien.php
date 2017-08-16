@@ -79,8 +79,6 @@ if ($nv_Request->isset_request('do', 'post')) {
 							$sth->execute();
 						}
 					}
-					$day_apply = date("d/m/Y", strtotime('next monday'));
-					$db->query("UPDATE " . NV_PREFIXLANG . "_" . $module_data . "_config SET cfg_value = '" . $day_apply . "' WHERE cfg_name = 'day_apply'");
 					$success = $lang_module['import_success'];
 					unlink($file);
 	            }

@@ -1,6 +1,6 @@
 <!-- BEGIN: main -->
 <link rel="stylesheet" type="text/css" href="{LINK_CSS_SELECT2}" />
-	<h2 class="text-center">{LANG.search_tkb_gv}</h2>
+	<h2 class="text-center">{TITLE_TKB}</h2>
 	<p class="text-center">{LANG.apply_from_day}: <strong>{DAY_APPLY}</strong></p>
 	<!-- BEGIN: block_table -->
 	<form method="post">

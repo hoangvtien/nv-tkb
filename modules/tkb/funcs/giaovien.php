@@ -8,6 +8,7 @@ $page_title = $module_info['custom_title'];
 $key_words = $module_info['keywords'];
 
 $day_apply = $db->query("SELECT cfg_value FROM " . NV_PREFIXLANG . "_" . $module_data . "_config WHERE cfg_name = 'day_apply'")->fetch()['cfg_value'];
+$title_tkb = $db->query("SELECT cfg_value FROM " . NV_PREFIXLANG . "_" . $module_data . "_config WHERE cfg_name = 'title_tkb_gv'")->fetch()['cfg_value'];
 $result = $db->query("SELECT DISTINCT giaovien FROM " . NV_PREFIXLANG . "_" . $module_data . "_giaovien ORDER BY giaovien ASC");
 $ds_gv = [];
 while ($row = $result->fetch()) {
@@ -27,9 +28,9 @@ if ($nv_Request->get_title('keywords', 'post')) {
 		$i++;
 	} 
 
-	$contents = view_giaovien($day_apply, $ds_gv, $gv_ht, $tkb);
+	$contents = view_giaovien($title_tkb, $day_apply, $ds_gv, $gv_ht, $tkb);
 } else {
-	$contents = view_giaovien($day_apply, $ds_gv);
+	$contents = view_giaovien($title_tkb, $day_apply, $ds_gv);
 }
 
 include (NV_ROOTDIR . "/includes/header.php");

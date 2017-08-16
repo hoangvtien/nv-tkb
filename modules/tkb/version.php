@@ -7,6 +7,7 @@ if (!defined('NV_ADMIN') or !defined('NV_MAINFILE')) {
 $module_version = array(
     'name' => 'Thời khóa biểu',
     'modfuncs' => 'main,giaovien',
+    'submenu' => 'main,giaovien',
     'is_sysmod' => 0,
     'virtual' => 1,
     'version' => '4.2.01',

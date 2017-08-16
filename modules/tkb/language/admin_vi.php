@@ -27,3 +27,4 @@ $lang_module['error_cannot_read_file'] = 'Lỗi không thể đọc file';
 $lang_module['error_upload_file'] = 'Lỗi upload file';
 $lang_module['error_dont_have_file'] = 'Dường như chưa chọn file';
 $lang_module['import_success'] = 'Import TKB thành công !';
+$lang_module['config'] = 'Cấu hình';

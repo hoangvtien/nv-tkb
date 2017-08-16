@@ -8,6 +8,8 @@ $page_title = $module_info['custom_title'];
 $key_words = $module_info['keywords'];
 
 $day_apply = $db->query("SELECT cfg_value FROM " . NV_PREFIXLANG . "_" . $module_data . "_config WHERE cfg_name = 'day_apply'")->fetch()['cfg_value'];
+$title_tkb = $db->query("SELECT cfg_value FROM " . NV_PREFIXLANG . "_" . $module_data . "_config WHERE cfg_name = 'title_tkb_lop'")->fetch()['cfg_value'];
+
 $result = $db->query("SELECT DISTINCT lop FROM " . NV_PREFIXLANG . "_" . $module_data . "_lop ORDER BY lop ASC");
 $ds_lop = [];
 while ($row = $result->fetch()) {
@@ -34,9 +36,9 @@ if ($nv_Request->get_title('keywords', 'post')) {
 		$i++;
 	} 
 
-	$contents = view_site_main($day_apply, $ds_lop, $lop_ht, $tkb, $num_time0, $num_time1);
+	$contents = view_site_main($title_tkb, $day_apply, $ds_lop, $lop_ht, $tkb, $num_time0, $num_time1);
 } else {
-	$contents = view_site_main($day_apply, $ds_lop);
+	$contents = view_site_main($title_tkb, $day_apply, $ds_lop);
 }
 
 include (NV_ROOTDIR . "/includes/header.php");

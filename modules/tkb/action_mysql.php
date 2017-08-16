@@ -38,4 +38,6 @@ cfg_name VARCHAR( 150 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL PRIM
 cfg_value TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL
 )ENGINE=MyISAM  DEFAULT CHARSET=utf8";
 
-$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_config (cfg_name, cfg_value) VALUES ('day_apply', '')";
+$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_config (cfg_name, cfg_value) VALUES ('day_apply', '".date("d/m/Y", strtotime('next monday'))."')";
+$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_config (cfg_name, cfg_value) VALUES ('title_tkb_lop', 'THỜI KHÓA BIỂU LỚP')";
+$sql_create_module[] = "INSERT INTO " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_config (cfg_name, cfg_value) VALUES ('title_tkb_gv', 'THỜI KHÓA BIỂU GIÁO VIÊN')";
